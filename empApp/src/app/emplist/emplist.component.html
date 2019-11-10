@@ -1,0 +1,13 @@
+<div class="row">
+  <table class="table table-bordered table-hover table-striped">
+    <tr>
+      <td>Name</td><td>Job</td><td>Salary</td>
+    </tr>
+    <tr *ngFor="let emp of emps">
+        <td>{{emp.name}}</td>
+        <td>{{emp.job}}</td>
+        <td>{{emp.salary}}</td>
+        
+    </tr>
+  </table>
+</div>
