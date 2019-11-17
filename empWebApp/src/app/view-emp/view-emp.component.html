@@ -1,0 +1,18 @@
+<div class="row">
+  <table class="table table-bordered table-striped table-hover">
+    <tr>
+      <td>Name</td><td>Job</td><td>Salary</td><td>Actions</td>
+    </tr>
+    <tr *ngFor="let emp of emps">
+        <td>{{emp.name}}</td>
+        <td>{{emp.job}}</td>
+        <td>{{emp.salary}}</td>
+        <td>
+          <button type="button" class="btn btn-link"
+          (click)="edit(emp)">Edit</button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-link"
+          (click)="delete(emp)">Delete</button>
+        </td>
+      </tr>
+  </table>
+</div>
