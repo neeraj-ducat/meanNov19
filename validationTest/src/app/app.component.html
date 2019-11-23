@@ -1,0 +1,41 @@
+<div class="row">
+  <form class="form-horizontal" #myForm="ngForm">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="user.name" 
+       class="form-control" [(ngModel)]="user.name"
+       required #txtName="ngModel">
+      <span *ngIf="txtName.invalid && txtName.touched" class="text-danger">Name is required.</span> 
+    </div>
+    <div class="form-group">
+        <label>MailId</label>
+        <input type="text" name="user.email" 
+         class="form-control" [(ngModel)]="user.email"
+         email #txtEmail="ngModel" required>
+         <span *ngIf="txtEmail.invalid && txtEmail.touched" class="text-danger">Maild should be in proper format.</span> 
+ 
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="user.password" 
+         class="form-control" [(ngModel)]="user.password"
+         required #txtPassword="ngModel">
+         <span *ngIf="txtPassword.invalid && txtPassword.touched" class="text-danger">Password is required.</span> 
+ 
+    </div>
+    <div class="form-group">
+       <!-- 
+       <button type="button" class="btn btn-primary"
+       (click)="register()" [disabled]="myForm.invalid">
+         Register
+       </button> 
+      -->
+      <button type="button" class="btn btn-primary"
+      (click)="register(myForm)">
+        Register
+      </button> 
+    </div>
+  </form>
+</div>
+<hr/>
+<ngx-alerts></ngx-alerts>
