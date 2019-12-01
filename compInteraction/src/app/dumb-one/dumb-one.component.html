@@ -1,0 +1,13 @@
+<div class="row">
+ <table class="table table-bordered table-stipted table-hover">
+  <tr>
+    <td>Name</td> <td>Email</td><td>Company</td><td>Action</td>
+  </tr>
+  <tr *ngFor="let user of users">
+      <td>{{user.name}}</td> 
+      <td>{{user.email}}</td>
+      <td>{{user.company.name}}</td>
+      <td><button type="button" class="btn btn-link" (click)="selected(user)">details</button></td>
+    </tr>
+ </table>
+</div>

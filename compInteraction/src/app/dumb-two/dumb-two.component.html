@@ -1,0 +1,28 @@
+<div class="row" *ngIf="user != null">
+  <form class="form-horizontal">
+    <div class="from-group">
+        <label>Name</label>
+        <input type="text" name="user.name"
+        [(ngModel)]="user.name" 
+        class="form-control" readonly/>
+    </div>
+    <div class="from-group">
+        <label>Email</label>
+        <input type="text" name="user.email"
+        [(ngModel)]="user.email" 
+        class="form-control" readonly/>
+    </div>
+    <div class="from-group">
+        <label>Phone</label>
+        <input type="text" name="user.phone"
+        [(ngModel)]="user.phone" 
+        class="form-control" readonly/>
+    </div>
+    <div class="from-group">
+        <label>City</label>
+        <input type="text" name="user.address.city"
+        [(ngModel)]="user.address.city" 
+        class="form-control" readonly/>
+    </div>
+  </form>
+</div>
