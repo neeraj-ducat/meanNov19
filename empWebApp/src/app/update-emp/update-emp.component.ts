@@ -3,6 +3,7 @@ import { EmpService } from '../emp.service';
 import { AlertService } from 'ngx-alerts';
 import { Router } from '@angular/router';
 import { Emp } from '../emp.model';
+import { FileUploaderService } from '../file-uploader.service';
 
 @Component({
   selector: 'app-update-emp',
@@ -15,7 +16,8 @@ export class UpdateEmpComponent implements OnInit {
   emp: Emp;
   constructor(private empService: EmpService,
     private alertService: AlertService,
-    private router: Router) { 
+    private router: Router,
+    private fileUploader: FileUploaderService) { 
       this.emp = this.empService.emp;
     }
 
@@ -29,5 +31,12 @@ export class UpdateEmpComponent implements OnInit {
   }  
   ngOnInit() {
   }
-
+  fileuploaderFileChange(files: FileList){
+    console.log('uploading ',files[0].name);
+    this.fileUploader.uploadFile(files[0])
+    .subscribe((result)=>{
+      this.alertService.success('successfully uploaded.');
+     
+    });
+  }
 }

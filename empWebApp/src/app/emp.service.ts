@@ -4,7 +4,7 @@ import { Emp } from './emp.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-const api_url = 'http://localhost:3000/emps';
+const api_url = 'http://localhost:4500/employees';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,9 +35,7 @@ export class EmpService {
   // to update an Employee to the server
   public update(emp: Emp): Observable<Emp>
   {
-    let url = api_url+'/'+emp.id;
-    console.log('sending put request to ', url);
-    return this.http.put<Emp>(url, emp);
+    return this.http.put<Emp>(api_url, emp);
   }
   // to remove an Employee on the server
   public remove(id: number): Observable<{}>

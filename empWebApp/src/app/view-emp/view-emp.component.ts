@@ -28,7 +28,7 @@ export class ViewEmpComponent implements OnInit {
   public delete(emp: Emp)
   {
     // Get the emp removed on the server
-    this.es.remove(emp.id)
+    this.es.remove(emp._id)
       .subscribe(data=>{
         // Remove the emp from the array so it gets removed from the view table as well.
         this.emps.splice(this.emps.indexOf(emp), 1);
