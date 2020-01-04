@@ -36,7 +36,13 @@ export class UpdateEmpComponent implements OnInit {
     this.fileUploader.uploadFile(files[0])
     .subscribe((result)=>{
       this.alertService.success('successfully uploaded.');
-     
+      // imageUrl of the current object is updated
+      this.emp.imageUrl=result.filePath;
+      //service method is invoked to the image url updated in the DB as well.
+      this.empService.updateImage(this.emp)
+          .subscribe(result => {
+            console.log(result);
+          });
     });
   }
 }

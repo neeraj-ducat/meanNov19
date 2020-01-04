@@ -37,6 +37,13 @@ export class EmpService {
   {
     return this.http.put<Emp>(api_url, emp);
   }
+  // to update an image of an Employee to the server
+  public updateImage(emp: Emp): Observable<Emp>
+  {
+    let url = api_url+'/image';
+    console.log('sending request to '+url);
+    return this.http.put<Emp>(url, emp);
+  }
   // to remove an Employee on the server
   public remove(id: number): Observable<{}>
   {

@@ -1,4 +1,5 @@
 <div class="row">
+  <div class="col-md-6">
     <form class="form-horizontal">
       <div class="form-group">
         <label>Name</label>
@@ -21,12 +22,17 @@
       </div>
     </form>
   </div>
-  <div class="row">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <file-uploader [maxSizeInKb]="110" [allowMultiple]="False" [fileType]="'image/*'" 
-        (onSelection)="fileuploaderFileChange($event)"  [required]="false"></file-uploader>
-      </div>
-    </form>
-   </div>
+  <div class="col-md-3">
+    <div class="thumbnail">
+        <img src="{{emp.imageUrl}}" />
+        <form class="form-horizontal">
+            <div class="form-group">
+              <file-uploader [maxSizeInKb]="110" [allowMultiple]="False" [fileType]="'image/*'" 
+              (onSelection)="fileuploaderFileChange($event)"  [required]="false">Change Image</file-uploader>
+            </div>
+          </form>
+    </div>
+  </div>
+  </div>
+  
   

@@ -20,15 +20,20 @@ mongoose.connect('mongodb://localhost:27017/ducat');
 const Emp = mongoose.model('emps',{
     name: String,
     job: String,
-    salary: Number
+    salary: Number,
+    imageUrl: String
   });
 //body-parser middleware is registered to parse json body
 app.use(bodyParser.json());
 // cors middleware is registered to add cors headers to the response of
 // each request
 app.use(cors());
-// API endpoints are defined
-
+console.log('current directory is '+__dirname);
+// to directly serve static resources such as images, html pages etc.
+app.use(express.static(__dirname));
+// var to form the url of uploaded images.
+var uploaded = 'http://localhost:4500/uploaded/';
+var imageUrl ='';
 // multer storage configuration
 const config = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -37,7 +42,7 @@ const config = multer.diskStorage({
     filename: function (req, file, cb) {
         let fname = Date.now() +
          path.extname(file.originalname);
-        //imageUrl = uploaded + fname; // to save in db
+        imageUrl = uploaded + fname; // to save in db
       cb(null, fname);
     }
   });
@@ -67,8 +72,8 @@ app.post('/employees',function(req, res){
 // Method to process file upload requests.
 app.post('/employees/profileImage',upload.single('profileImage'),
 function(req,res){
- // console.log(uploaded+' is uploaded.');
-  res.json({'status': 'uploaded.'});
+  console.log('File is uploaded at: '+imageUrl);
+  res.json({'filePath': imageUrl });
   });
 app.put('/employees',function(req, res){
     let emp = req.body;
@@ -77,6 +82,18 @@ app.put('/employees',function(req, res){
         name: emp.name, job: emp.job, salary:emp.salary
     }}).then(result => {
         res.json(result);
+    });
+    
+});
+
+app.put('/employees/image',function(req, res){
+    let emp = req.body;
+    console.log('To be updated: ', emp);
+    // An object of Model type is created for the body
+    Emp.updateOne({_id: new ObjectId(emp._id)},{$set: {
+        imageUrl: emp.imageUrl}}).then(result => {
+        res.json(result);
+        console.log(result);
     });
     
 });
